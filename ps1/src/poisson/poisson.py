@@ -1,6 +1,7 @@
 import numpy as np
 import util
 import matplotlib.pyplot as plt
+from scipy.special import factorial
 
 def main(lr, train_path, eval_path, save_path):
     """Problem: Poisson regression with gradient ascent.
@@ -90,7 +91,7 @@ class PoissonRegression:
                 break
 
             if self.verbose and i % 10 == 0:
-                log_likelihood = np.sum(y * x.dot(self.theta) - np.exp(x.dot(self.theta)))
+                log_likelihood = np.sum(y * x.dot(self.theta) - np.exp(x.dot(self.theta)) - np.log(factorial(y)))
                 print(f"Iteration {i}, Log-likelihood: {log_likelihood}")
         # *** END CODE HERE ***
 
